@@ -11,20 +11,30 @@ class TennisGame:
         else:
             self.m_score2 = self.m_score2 + 1
 
+    def same_amount_of_points(self):
+        if self.m_score1 == self.m_score2:
+            return self.m_score1
+        return None
+
+    def either_player_has_4_or_more(self):
+        return self.m_score1 >= 4 or self.m_score2 >= 4
+
     def get_score(self):
         score = ""
         temp_score = 0
 
-        if self.m_score1 == self.m_score2:
-            if self.m_score1 == 0:
+        same_point = self.same_amount_of_points()
+
+        if same_point is not None:
+            if same_point == 0:
                 score = "Love-All"
-            elif self.m_score1 == 1:
+            elif same_point == 1:
                 score = "Fifteen-All"
-            elif self.m_score1 == 2:
+            elif same_point == 2:
                 score = "Thirty-All"
             else:
                 score = "Deuce"
-        elif self.m_score1 >= 4 or self.m_score2 >= 4:
+        elif self.either_player_has_4_or_more():
             minus_result = self.m_score1 - self. m_score2
 
             if minus_result == 1:
